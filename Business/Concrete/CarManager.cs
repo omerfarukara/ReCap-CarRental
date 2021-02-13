@@ -16,6 +16,16 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
+        public void Add(Car car)
+        {
+            _carDal.Add(car);
+        }
+
+        public void Delete(Car car)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Car> GetAll()
         {
             return _carDal.GetAll(c=>c.Description.Length>2 & c.DailyPrice>0);
@@ -34,6 +44,11 @@ namespace Business.Concrete
         public List<CarDetailDto> GetCarDetails()
         {
             return _carDal.GetCarDetails();
+        }
+
+        public void Update(Car car)
+        {
+            throw new NotImplementedException();
         }
     }
 
