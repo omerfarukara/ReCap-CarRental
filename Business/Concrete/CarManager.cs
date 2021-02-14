@@ -1,4 +1,7 @@
 ﻿using Business.Abstract;
+using Business.Constants;
+using Core.Utilities.Results.Abstract;
+using Core.Utilities.Results.Concrete;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
@@ -16,39 +19,41 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
-        public void Add(Car car)
+        public IResult Add(Car car)
         {
-            _carDal.Add(car);
+           _carDal.Add(car);
+            return new SuccessResult(Messages.CarAdded);
         }
 
-        public void Delete(Car car)
+        public IResult Delete(Car car)
         {
             throw new NotImplementedException();
         }
 
-        public List<Car> GetAll()
+        public IDataResult<List<Car>> GetAll()
         {
-            return _carDal.GetAll(c=>c.Description.Length>2 & c.DailyPrice>0);
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c=>c.Description.Length>2 & c.DailyPrice>0));
         }
 
-        public List<Car> GetAllBrandId(int id)
+        public IDataResult<List<Car>> GetAllBrandId(int id)
         {
-            return _carDal.GetAll(c => c.BrandId == id);
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.BrandId == id));
         }
 
-        public List<Car> GetAllColorId(int id)
+        public IDataResult<List<Car>> GetAllColorId(int id)
         {
-            return _carDal.GetAll(c => c.ColorId == id);
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.ColorId == id));
         }
 
-        public List<CarDetailDto> GetCarDetails()
+        public IDataResult<List<CarDetailDto>> GetCarDetails()
         {
-            return _carDal.GetCarDetails();
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails());
         }
 
-        public void Update(Car car)
+        public IResult Update(Car car)
         {
-            throw new NotImplementedException();
+            _carDal.Update(car);
+            return new SuccessResult(Messages.CarUpdated);
         }
     }
 

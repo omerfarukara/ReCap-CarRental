@@ -15,9 +15,9 @@ namespace DataAccess.Concrete.InMemory
         public InMemoryCarDal()
         {
             _car = new List<Car> {
-            new Car {Id = 1 , BrandId =  1 , ColorId = 1 , DailyPrice = 250 , Description = "Muscle Car" , ModelYear=2016 },
-            new Car {Id = 2 , BrandId =  2 , ColorId = 2 , DailyPrice = 1000 , Description = "Luxe Car" , ModelYear=2020 },
-            new Car {Id = 3 , BrandId =  3 , ColorId = 3 , DailyPrice = 750 , Description = "Sport Car" , ModelYear=2018 }
+            new Car {CarId = 1 , BrandId =  1 , ColorId = 1 , DailyPrice = 250 , Description = "Muscle Car" , ModelYear=2016 },
+            new Car {CarId = 2 , BrandId =  2 , ColorId = 2 , DailyPrice = 1000 , Description = "Luxe Car" , ModelYear=2020 },
+            new Car {CarId = 3 , BrandId =  3 , ColorId = 3 , DailyPrice = 750 , Description = "Sport Car" , ModelYear=2018 }
             };
         }
         public void Add(Car car)
@@ -28,7 +28,7 @@ namespace DataAccess.Concrete.InMemory
         public void Delete(Car car)
         {
             Car carToDelete = null;
-            carToDelete = _car.SingleOrDefault(c => c.Id == car.Id);
+            carToDelete = _car.SingleOrDefault(c => c.CarId == car.CarId);
             _car.Remove(car);
         }
 
@@ -59,8 +59,8 @@ namespace DataAccess.Concrete.InMemory
 
         public void Update(Car car)
         {
-            Car carToUptade = _car.SingleOrDefault(c => c.Id == car.Id);
-            carToUptade.Id = car.Id;
+            Car carToUptade = _car.SingleOrDefault(c => c.CarId == car.CarId);
+            carToUptade.CarId = car.CarId;
             carToUptade.ColorId = car.ColorId;
             carToUptade.BrandId = car.BrandId;
             carToUptade.DailyPrice = car.DailyPrice;
